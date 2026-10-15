@@ -317,14 +317,17 @@ p{font-size:clamp(.99rem,4vw,1.11rem);line-height:1.74;margin:0 0 .85rem;color:r
   <section>
     <p class="eyebrow r">teesra hissa &mdash; woh message</p>
     <svg class="flour r" viewBox="0 0 190 16" aria-hidden="true"><path d="M0 8 H66 M124 8 H190 M80 8 q7-7 15 0 q8 7 15 0"/></svg>
-    <h2 class="r">Phir aathwein semester mein, tum ne mujhe message kiya.</h2>
-    <p class="r">FYP groups ban rahe the. Main ne kabhi socha bhi nahi tha ke pehla qadam tum lo gi.</p>
+    <h2 class="r">Tum ne mujhse madad maangi. Aur main kuch na kar saka.</h2>
+    <p class="r">FYP groups ban rahe the. Chaar saal mein pehli baar tum ne mujhe message kiya &mdash; aur main wohi ek kaam na kar saka jo tum ne maanga tha.</p>
     <div class="chat" id="chat">
       <div class="typing" id="typing"><i></i><i></i><i></i></div>
       <div class="bub her" data-d="0">Can you adjust me in your group?</div>
-      <div class="bub me" data-d="900">Haan, bilkul.</div>
+      <div class="bub me" data-d="800">Main dekhta hun.</div>
+      <div class="bub me" data-d="2200">Mera group poora tha. Main ne doosre groups se bhi poocha.</div>
+      <div class="bub her" data-d="3800">Koi baat nahi. Main apna group bana leti hun.</div>
     </div>
-    <p class="lead r">Chaar saal mein pehli baar main ne tumse baat ki &mdash; aur wajah tum thi, main nahi.</p>
+    <p class="r">Main ne har jagah try kiya. Kuch nahi bana. Aakhir mein tum ne apna group alag bana liya &mdash; mere saath nahi.</p>
+    <p class="lead r">Lekin us ek message ne woh kaam kar diya jo main chaar saal mein nahi kar saka. Us din ke baad hum baat karne lage.</p>
   </section>
 
   <section>
@@ -365,7 +368,7 @@ p{font-size:clamp(.99rem,4vw,1.11rem);line-height:1.74;margin:0 0 .85rem;color:r
       <button class="dodge" id="dodge" lang="ur">ضدی انسان</button>
       <span class="dodgenote" id="dodgenote">pakar ke dekho &mdash; yeh rukti hi nahi</span>
     </div>
-    <p class="r">Kyunke tum har cheez mein zid karti ho. Chhoti se chhoti baat mein.</p>
+    <p class="r">Kyunke tum har cheez mein zid karti ho. Chhoti se chhoti baat mein. Us din bhi &mdash; tum ne apna group alag bana liya aur bana ke dikha diya.</p>
     <p class="lead r">Aur mujhe wahi sab se zyada pasand hai. Jo log har baat pe asani se haan keh dete hain, unki haan ki koi qeemat nahi hoti. Tumhari haan ki qeemat hai.</p>
   </section>
 
@@ -403,7 +406,7 @@ p{font-size:clamp(.99rem,4vw,1.11rem);line-height:1.74;margin:0 0 .85rem;color:r
             <p class="hd">میری زندگی کی سب سے ضدی لڑکی کے نام</p>
             <p>یہ خط لکھنے میں مجھے چار سال لگ گئے۔</p>
             <p>پہلے سمسٹر کے پہلے دن سے تم مجھے اچھی لگنے لگی تھیں۔ سات سمسٹر ایک ہی کلاس میں گزرے — اور میرے پاس تمہارا نمبر بھی نہیں تھا۔</p>
-            <p>پھر تم نے خود مجھے میسج کیا۔ تمہارے لیے وہ ایک عام میسج تھا۔ میرے لیے چار سال بعد دروازہ کھلا تھا۔</p>
+            <p>پھر تم نے خود مجھے میسج کیا — اپنے گروپ کے لیے۔ اور میں وہی ایک کام نہ کر سکا جو تم نے مانگا تھا۔ تم نے اپنا گروپ الگ بنا لیا، میرے ساتھ نہیں۔ مگر اُس ایک میسج نے وہ کام کر دیا جو میں چار سال میں نہ کر سکا — ہم بات کرنے لگے۔</p>
             <p>ایک غلطی میں نے کی — تمہارا نمبر اور ہماری باتیں ڈیلیٹ کر دیں۔ وہ میری بے صبری تھی۔ پیر کے دن میں نے معافی مانگی، اور تم نے معاف کر دیا۔ یہ سب سے خوبصورت چیز ہے جو کسی نے میرے ساتھ کی۔</p>
             <p class="big">میں تمہیں ضدی انسان کہتا ہوں، اور مجھے وہی سب سے زیادہ پسند ہے۔ آسان ہاں کی کوئی قیمت نہیں ہوتی۔</p>
             <p>چار سال خاموش رہا۔ آج نہیں رہ سکتا۔ جو جواب ہو، مجھے قبول ہے۔</p>
@@ -779,6 +782,7 @@ function sizeAll(){
   [cv, bc].forEach(function(c){ c.width = W * DPR; c.height = H * DPR; });
   ctx.setTransform(DPR,0,0,DPR,0,0);
   bx.setTransform(DPR,0,0,DPR,0,0);
+  MAXP = (W * H > 420000) ? 560 : 380;
   build();
 }
 function build(){
@@ -854,27 +858,42 @@ function flower(c, type, s){
   }
 }
 
-function pushFlower(o){ if(parts.length < 440) parts.push(o); }
+var MAXP = 420;
+var TYPES = [0,0,0,0,1,2,3,3];   /* cheap single-fill shapes weighted higher */
 
-function rain(n){
+function pushFlower(o){ if(parts.length < MAXP) parts.push(o); }
+
+function mkFlower(x, y, vx, vy, g){
+  return { k: 'f', x: x, y: y, vx: vx, vy: vy,
+    s: 5 + Math.random() * 9, a: Math.random() * 6.28, va: (Math.random() - 0.5) * 0.12,
+    t: TYPES[(Math.random() * TYPES.length) | 0], c: COLS[(Math.random() * COLS.length) | 0],
+    sw: Math.random() * 6.28, life: 1, g: g };
+}
+
+/* fills the WHOLE screen at once -- flowers already mid-fall everywhere */
+function scatter(n){
   for(var i = 0; i < n; i++){
-    pushFlower({ k: 'f',
-      x: Math.random() * W, y: -30 - Math.random() * 120,
-      vx: (Math.random() - 0.5) * 0.9, vy: 1.1 + Math.random() * 2.3,
-      s: 5 + Math.random() * 10, a: Math.random() * 6.28, va: (Math.random() - 0.5) * 0.09,
-      t: (Math.random() * 4) | 0, c: COLS[(Math.random() * COLS.length) | 0],
-      sw: Math.random() * 6.28, life: 1, g: 0 });
+    pushFlower(mkFlower(Math.random() * W, Math.random() * H,
+      (Math.random() - 0.5) * 0.9, 1.0 + Math.random() * 2.4, 0));
   }
 }
-function blast(n){
+
+/* evenly spread across the full width, not clustered */
+function rain(n){
   for(var i = 0; i < n; i++){
-    var ang = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, sp = 5 + Math.random() * 13;
-    pushFlower({ k: 'f',
-      x: W * 0.5 + (Math.random() - 0.5) * W * 0.22, y: H * 0.62,
-      vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp,
-      s: 5 + Math.random() * 11, a: Math.random() * 6.28, va: (Math.random() - 0.5) * 0.2,
-      t: (Math.random() * 4) | 0, c: COLS[(Math.random() * COLS.length) | 0],
-      sw: Math.random() * 6.28, life: 1, g: 0.16 });
+    pushFlower(mkFlower((i + Math.random()) * (W / n), -25 - Math.random() * 150,
+      (Math.random() - 0.5) * 0.9, 1.1 + Math.random() * 2.4, 0));
+  }
+}
+
+/* four fountains across the width, aimed more up than sideways */
+function blast(n){
+  var E = [0.13, 0.37, 0.63, 0.87];
+  for(var i = 0; i < n; i++){
+    var ang = -Math.PI / 2 + (Math.random() - 0.5) * 1.5;
+    var sp = 6 + Math.random() * 11;
+    pushFlower(mkFlower(W * E[i % E.length] + (Math.random() - 0.5) * W * 0.1, H * 0.74,
+      Math.cos(ang) * sp * 0.55, Math.sin(ang) * sp, 0.17));
   }
 }
 function sparks(cx, cy, n){
@@ -892,16 +911,17 @@ function celebrate(){
   parts = [];
   spawning = true;
   bc.classList.add('on');
-  blast(90);
-  sparks(W * 0.5, H * 0.42, 60);
+  scatter(80);                      /* screen is full immediately */
+  blast(96);                        /* four fountains, full width */
+  sparks(W * 0.5, H * 0.4, 60);
   var waves = 0;
   var iv = setInterval(function(){
     waves++;
-    rain(16);
-    if(waves % 2 === 0) sparks(W * (0.14 + Math.random() * 0.72), H * (0.14 + Math.random() * 0.4), 26);
-    if(waves === 4) blast(45);
-    if(waves >= 20){ clearInterval(iv); spawning = false; }
-  }, 520);
+    rain(26);
+    if(waves % 2 === 0) sparks(W * (0.08 + Math.random() * 0.84), H * (0.1 + Math.random() * 0.62), 24);
+    if(waves === 6 || waves === 16) blast(60);
+    if(waves >= 34){ clearInterval(iv); spawning = false; }
+  }, 300);
   timers.push(iv);
   if(!running){ running = true; drawParty(); }
 }
